@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load markdownify %}
 
 {% block header %}
   <!-- Page Header -->
@@ -26,7 +27,7 @@
       {{ post.titulo }}
     </h2>
     <h3 class="post-subtitle">
-      {{ post.descricao }}
+      {{ post.descricao|markdownify }}
     </h3>
   </a>
 </div>

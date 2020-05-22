@@ -3,21 +3,17 @@ from mdeditor.widgets import MDEditorWidget
 
 from .models import *
 
-# Register your models here.
-# class PostInline(admin.TabularInline):
-#     model = Post
-
 class PostInline(admin.StackedInline):
     model = Post
+
+class AutorAdmin(admin.ModelAdmin):
+    inlines = (PostInline, )
 
 class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': MDEditorWidget}
     }
-    list_filter = ['autor', 'data_cadastro', 'titulo']
-
-class AutorAdmin(admin.ModelAdmin):
-    inlines = (PostInline, )
+    list_filter = ['data_cadastro','autor']
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Autor, AutorAdmin)
